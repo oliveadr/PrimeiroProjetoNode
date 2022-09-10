@@ -1,0 +1,33 @@
+//exporta uma funcao assincrona do JavaScript
+module.exports = async function (context, req) {
+
+//requisita os valores e a operacao p/ usuario
+    let operacao = String(req.query.operacao);
+    let n1 = Number(req.query.n1);
+    let n2 = Number(req.query.n2);
+
+//confere as condicoes de operacao
+
+    if(operacao=='soma'){
+        resultado= n1+n2;
+    }else if(operacao == 'subtracao'){
+        resultado = n1-n2;       
+    }else if(operacao =='multiplicacao'){
+        resultado = n1*n2;  
+    }else if(operacao=='divisao'){
+        resultado = n1/n2;
+    }else if(operacao=='exponenciacao'){
+        resultado = Math.pow(n1,n2);
+    }else if(((operacao=='raiz')&&(n2==2))){
+        resultado = Math.sqrt(n1);
+    }
+
+//retorna o valor p/ usuario
+    context.res.json({  
+        Operacao: operacao,
+        PrimeiroNumero: n1,
+        SegundoNumero: n2,
+        Resultado: resultado
+      });
+
+}
